@@ -3339,6 +3339,12 @@ public class Database implements IVariables, ILoggingObject, AutoCloseable {
     return nextValue;
   }
 
+  public void clearNextValueCounter(String schemaName, String tableName, String valKey) {
+    String schemaTable = databaseMeta.getQuotedSchemaTableCombination(this, schemaName, tableName);
+    String lookup = schemaTable + "." + databaseMeta.quoteField(valKey);
+    Counters.getInstance().clearCounter(lookup);
+  }
+
   @Override
   public String toString() {
     if (databaseMeta != null) {

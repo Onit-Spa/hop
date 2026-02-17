@@ -1852,6 +1852,14 @@ public class DimensionLookup extends BaseTransform<DimensionLookupMeta, Dimensio
       return false;
     }
     data.db = new Database(this, this, data.databaseMeta);
+    if (getCopy() == 0
+        && meta.getFields().getReturns().getCreationMethod()
+            == TechnicalKeyCreationMethod.TABLE_MAXIMUM) {
+      data.db.clearNextValueCounter(
+          data.realSchemaName,
+          data.realTableName,
+          meta.getFields().getReturns().getKeyField());
+    }
     try {
       data.db.connect();
 
