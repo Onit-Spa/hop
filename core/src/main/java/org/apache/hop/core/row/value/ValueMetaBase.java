@@ -5693,16 +5693,25 @@ public class ValueMetaBase implements IValueMeta {
           break;
 
         case IValueMeta.TYPE_DATE:
-          if (getPrecision() != 1 && iDatabase.isSupportsTimeStampToDateConversion()) {
-            data = resultSet.getTimestamp(index + 1);
-            break; // Timestamp extends java.util.Date
-          } else if (iDatabase.isNetezzaVariant()) {
-            // workaround for IBM netezza jdbc 'special' implementation
-            data = getNetezzaDateValueWorkaround(iDatabase, resultSet, index + 1);
-            break;
-          } else {
+          if (iDatabase.isTrinoVariant()) {
+            // Trino does not support getTimestamp, and would fall into the branch below, so we need
+            // to re-use the code from the last else
             data = resultSet.getDate(index + 1);
             break;
+          } else {
+            if (getPrecision() != 1 && iDatabase.isSupportsTimeStampToDateConversion()) {
+              data = resultSet.getTimestamp(index + 1);
+              break; // Timestamp extends java.util.Date
+            } else {
+              if (iDatabase.isNetezzaVariant()) {
+                // workaround for IBM netezza jdbc 'special' implementation
+                data = getNetezzaDateValueWorkaround(iDatabase, resultSet, index + 1);
+                break;
+              } else {
+                data = resultSet.getDate(index + 1);
+                break;
+              }
+            }
           }
         default:
           break;

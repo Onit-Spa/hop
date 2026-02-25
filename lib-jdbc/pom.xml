@@ -43,6 +43,7 @@
         <redshift.version>2.1.0.32</redshift.version>
         <snowflake.jdbc.version>3.23.1</snowflake.jdbc.version>
         <sqlite.version>3.49.1.0</sqlite.version>
+        <trino.jdbc.version>477</trino.jdbc.version>
         <vertica.jdbc.version>24.4.0-0</vertica.jdbc.version>
     </properties>
 
@@ -139,6 +140,11 @@
                 <artifactId>mysql-connector-j</artifactId>
                 <version>${mysql.version}</version>
                 <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.trino</groupId>
+                <artifactId>trino-jdbc</artifactId>
+                <version>${trino.jdbc.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

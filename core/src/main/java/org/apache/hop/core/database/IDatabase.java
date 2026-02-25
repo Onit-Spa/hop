@@ -961,6 +961,11 @@ public interface IDatabase extends Cloneable {
   boolean isTeradataVariant();
 
   /**
+   * @return true if the database is a Trino variant.
+   */
+  boolean isTrinoVariant();
+
+  /**
    * Returns a true if savepoints can be released, false if not.
    *
    * @return

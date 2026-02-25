@@ -620,6 +620,12 @@
         </dependency>
         <dependency>
             <groupId>org.apache.hop</groupId>
+            <artifactId>hop-databases-trino</artifactId>
+            <version>${project.version}</version>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hop</groupId>
             <artifactId>hop-databases-universe</artifactId>
             <version>${project.version}</version>
             <type>zip</type>

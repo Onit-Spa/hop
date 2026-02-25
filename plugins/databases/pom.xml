@@ -72,6 +72,7 @@
         <module>sybase</module>
         <module>sybaseiq</module>
         <module>teradata</module>
+        <module>trino</module>
         <module>universe</module>
         <module>vectorwise</module>
         <module>vertica</module>

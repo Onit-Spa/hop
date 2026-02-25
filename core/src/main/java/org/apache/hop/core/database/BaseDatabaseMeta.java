@@ -1694,6 +1694,14 @@ public abstract class BaseDatabaseMeta implements Cloneable, IDatabase {
   }
 
   /**
+   * @return true if the database is a Trino variant.
+   */
+  @Override
+  public boolean isTrinoVariant() {
+    return false;
+  }
+
+  /**
    * @return true if the database is a SQLite variant.
    */
   @Override
